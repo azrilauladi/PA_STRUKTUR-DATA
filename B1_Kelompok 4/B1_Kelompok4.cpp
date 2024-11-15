@@ -204,11 +204,11 @@ void tambahDlc(Game *&game)
 
 bool fibonacciSearchDlcLinked(GameDlc *dlcHead, const int &keyword)
 {
-    int fibMMm2 = 0;              // (m-2)'th Fibonacci No.
-    int fibMMm1 = 1;              // (m-1)'th Fibonacci No.
-    int fibM = fibMMm2 + fibMMm1; // m'th Fibonacci
+    int fibMMm2 = 0;              
+    int fibMMm1 = 1;              
+    int fibM = fibMMm2 + fibMMm1; 
 
-    // Temukan panjang linked list DLC
+    
     int n = 0;
     GameDlc *temp = dlcHead;
     while (temp)
@@ -217,7 +217,7 @@ bool fibonacciSearchDlcLinked(GameDlc *dlcHead, const int &keyword)
         temp = temp->next;
     }
 
-    // Jika DLC tidak ada
+    
     if (n == 0)
         return false;
 
@@ -232,25 +232,25 @@ bool fibonacciSearchDlcLinked(GameDlc *dlcHead, const int &keyword)
     GameDlc *prev = nullptr;
     GameDlc *curr = dlcHead;
 
-    // Lakukan pencarian Fibonacci
+    
     while (fibM > 0)
     {
         int i = min(offset + fibMMm2, n - 1);
 
-        // Gerakkan pointer curr ke posisi yang sesuai
+        
         for (int j = 0; j < i && curr; j++)
         {
             prev = curr;
             curr = curr->next;
         }
 
-        // Jika DLC ditemukan, kembalikan true
+        
         if (curr && curr->idDlc == keyword)
         {
             cout << "DLC ditemukan " << curr->namaDlc << " (ID: " << curr->idDlc << ")" << endl;
             return true;
         }
-        // Jika nilai curr->idDlc < keyword, cari di sisi kanan
+        
         else if (curr && curr->idDlc < keyword)
         {
             fibM = fibMMm1;
@@ -260,7 +260,7 @@ bool fibonacciSearchDlcLinked(GameDlc *dlcHead, const int &keyword)
             prev = curr;
             curr = curr->next;
         }
-        // Jika nilai curr->idDlc > keyword, cari di sisi kiri
+        
         else
         {
             fibM = fibMMm2;
@@ -269,7 +269,7 @@ bool fibonacciSearchDlcLinked(GameDlc *dlcHead, const int &keyword)
         }
     }
 
-    // Jika DLC dengan ID 'keyword' tidak ditemukan
+    
     return false;
 }
 
@@ -312,7 +312,7 @@ bool jumpSearchDlcLinked(GameDlc *dlcHead, const int &keyword)
     return false;
 }
 
-// Integrasikan di menu edit game
+
 void searchDlcInGame(Game *game)
 {
     cout << "Pilih metode pencarian DLC:\n1. Fibonacci Search\n2. Jump Search\nPilih metode: ";
@@ -361,7 +361,7 @@ void displayDlc(Game *game)
     }
 }
 
-// Fungsi untuk membuat tabel bad character heuristic
+
 void badCharHeuristic(const string &str, int badChar[256])
 {
     int m = str.size();
@@ -375,7 +375,7 @@ void badCharHeuristic(const string &str, int badChar[256])
     }
 }
 
-// Fungsi untuk mencari substring menggunakan algoritma Boyer-Moore
+
 bool boyerMooreSearch(const string &text, const string &pattern)
 {
     int n = text.size();
@@ -384,7 +384,7 @@ bool boyerMooreSearch(const string &text, const string &pattern)
 
     badCharHeuristic(pattern, badChar);
 
-    int s = 0; // s adalah pergeseran dari pattern terhadap text
+    int s = 0; 
     while (s <= (n - m))
     {
         int j = m - 1;
@@ -459,7 +459,7 @@ void dequeueDlc(Game *&game)
     delete temp;
 }
 
-// Helper function to split a linked list into two halves.
+
 Game *split(Game *head)
 {
     Game *fast = head;
@@ -481,7 +481,7 @@ Game *split(Game *head)
     return slow;
 }
 
-// Merge two sorted linked lists.
+
 Game *mergeSortedLists(Game *left, Game *right)
 {
     if (!left)
@@ -505,7 +505,7 @@ Game *mergeSortedLists(Game *left, Game *right)
     return result;
 }
 
-// Merge two sorted linked lists in descending order.
+
 Game *mergeSortedListsDescending(Game *left, Game *right)
 {
     if (!left)
@@ -515,7 +515,7 @@ Game *mergeSortedListsDescending(Game *left, Game *right)
 
     Game *result = nullptr;
 
-    // Change to descending order by checking if left->id > right->id
+    
     if (left->id > right->id)
     {
         result = left;
@@ -530,7 +530,7 @@ Game *mergeSortedListsDescending(Game *left, Game *right)
     return result;
 }
 
-// Recursive merge sort function for linked lists.
+
 Game *mergeSortGames(Game *head)
 {
     if (!head || !head->next)
@@ -545,7 +545,7 @@ Game *mergeSortGames(Game *head)
     return mergeSortedLists(left, right);
 }
 
-// Recursive merge sort function for linked lists in descending order.
+
 Game *mergeSortGamesDescending(Game *head)
 {
     if (!head || !head->next)
@@ -560,21 +560,21 @@ Game *mergeSortGamesDescending(Game *head)
     return mergeSortedListsDescending(left, right);
 }
 
-// Function to apply merge sort on the entire list starting from headGame.
+
 void sortGames()
 {
     headGame = mergeSortGames(headGame);
     cout << "Game telah di sorting berdasarkan ID." << endl;
 }
 
-// Function to apply merge sort on the entire list starting from headGame.
+
 void sortGamesDescending()
 {
     headGame = mergeSortGamesDescending(headGame);
     cout << "Game telah di sorting berdasarkan ID secara descending." << endl;
 }
 
-// Merge two sorted linked lists by game name.
+
 Game *mergeSortedListsByName(Game *left, Game *right)
 {
     if (!left)
@@ -598,7 +598,7 @@ Game *mergeSortedListsByName(Game *left, Game *right)
     return result;
 }
 
-// Merge two sorted linked lists by game name in descending order.
+
 Game *mergeSortedListsByNameDescending(Game *left, Game *right)
 {
     if (!left)
@@ -622,7 +622,7 @@ Game *mergeSortedListsByNameDescending(Game *left, Game *right)
     return result;
 }
 
-// Recursive merge sort function for linked lists by name.
+
 Game *mergeSortGamesByName(Game *head)
 {
     if (!head || !head->next)
@@ -637,7 +637,7 @@ Game *mergeSortGamesByName(Game *head)
     return mergeSortedListsByName(left, right);
 }
 
-// Recursive merge sort function for linked lists by name in descending order.
+
 Game *mergeSortGamesByNameDescending(Game *head)
 {
     if (!head || !head->next)
@@ -652,21 +652,21 @@ Game *mergeSortGamesByNameDescending(Game *head)
     return mergeSortedListsByNameDescending(left, right);
 }
 
-// Function to sort games by name in ascending order.
+
 void sortGamesByName()
 {
     headGame = mergeSortGamesByName(headGame);
     cout << "Game telah disorting berdasarkan nama secara ascending." << endl;
 }
 
-// Function to sort games by name in descending order.
+
 void sortGamesByNameDescending()
 {
     headGame = mergeSortGamesByNameDescending(headGame);
     cout << "Game telah disorting berdasarkan nama secara descending." << endl;
 }
 
-// Fungsi untuk mendapatkan tail dari linked list
+
 GameDlc *getTail(GameDlc *cur)
 {
     while (cur != nullptr && cur->next != nullptr)
@@ -674,7 +674,7 @@ GameDlc *getTail(GameDlc *cur)
     return cur;
 }
 
-// Fungsi untuk memisahkan (partition) linked list berdasarkan idDlc secara ascending
+
 GameDlc *partitionIDAsc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDlc **newEnd)
 {
     GameDlc *pivot = end;
@@ -707,7 +707,7 @@ GameDlc *partitionIDAsc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDlc 
     return pivot;
 }
 
-// Fungsi rekursif untuk quicksort berdasarkan idDlc ascending
+
 GameDlc *quickSortRecurIDAsc(GameDlc *head, GameDlc *end)
 {
     if (!head || head == end)
@@ -740,7 +740,7 @@ void quickSortIDAsc(Game *game)
     displayDlc(game);
 }
 
-// Fungsi partition untuk idDlc descending
+
 GameDlc *partitionIDDesc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDlc **newEnd)
 {
     GameDlc *pivot = end;
@@ -773,7 +773,6 @@ GameDlc *partitionIDDesc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDlc
     return pivot;
 }
 
-// Fungsi rekursif untuk quicksort berdasarkan idDlc descending
 GameDlc *quickSortRecurIDDesc(GameDlc *head, GameDlc *end)
 {
     if (!head || head == end)
@@ -806,7 +805,7 @@ void quickSortIDDesc(Game *game)
     displayDlc(game);
 }
 
-// Fungsi partition untuk namaDlc ascending
+/
 GameDlc *partitionNamaAsc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDlc **newEnd)
 {
     GameDlc *pivot = end;
@@ -839,7 +838,7 @@ GameDlc *partitionNamaAsc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDl
     return pivot;
 }
 
-// Fungsi rekursif untuk quicksort berdasarkan namaDlc ascending
+
 GameDlc *quickSortRecurNamaAsc(GameDlc *head, GameDlc *end)
 {
     if (!head || head == end)
@@ -872,7 +871,7 @@ void quickSortNamaAsc(Game *game)
     displayDlc(game);
 }
 
-// Fungsi partition untuk namaDlc descending
+
 GameDlc *partitionNamaDesc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameDlc **newEnd)
 {
     GameDlc *pivot = end;
@@ -905,7 +904,6 @@ GameDlc *partitionNamaDesc(GameDlc *head, GameDlc *end, GameDlc **newHead, GameD
     return pivot;
 }
 
-// Fungsi rekursif untuk quicksort berdasarkan namaDlc descending
 GameDlc *quickSortRecurNamaDesc(GameDlc *head, GameDlc *end)
 {
     if (!head || head == end)
@@ -1211,11 +1209,11 @@ void awal()
 
 int main()
 {
-    // Tambahkan game dengan stack
+    
     pushGame("1", "Halo Infinite");
     pushGame("2", "Cyberpunk 2077");
 
-    // Tambahkan DLC ke game tertentu
+    
     enqueueDlcToGame("1", 1, "Campaign Expansion");
     enqueueDlcToGame("1", 2, "Multiplayer Update");
     enqueueDlcToGame("2", 1, "Night City Expansion");
